@@ -8,6 +8,13 @@ class CategoryPage extends Component {
   }
 }
 
-CategoryPage.propTypes = {};
+CategoryPage.propTypes = {
+  // ownProps
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      categoryId: PropTypes.string
+    }).isRequired
+  }).isRequired
+};
 
 export default CategoryPage;
