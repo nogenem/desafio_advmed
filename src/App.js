@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
 
 import { HomePage, CategoryPage } from "./pages";
 import TopNavigation from "./components/navigation/TopNavigation";
