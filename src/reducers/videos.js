@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 import { VIDEOS_BY_CATEGORY_FETCHED } from "../constants/action_types";
 
 /*
@@ -28,6 +30,9 @@ const reshapeByCategoryData = (data, categoryId) => {
     id: id.videoId,
     url: `https://www.youtube.com/watch?v=${id.videoId}`,
     title: snippet.title,
+    // o end-point '/search' retorna apenas a descrição
+    // com um numero máximo de caracteres e adiciona
+    // '...' após este numero máximo
     short_description: snippet.description,
     thumbnails: {
       medium: snippet.thumbnails.medium.url
@@ -50,4 +55,14 @@ export default function videos(state = INITIAL_STATE, action = {}) {
   }
 }
 
-export const getByCategoryId = (state, categoryId) => [];
+/* Seletores */
+
+// Só tem um reducer, logo a store inteira possui os dados
+// do reducer 'videos'
+export const getVideosHash = state => state || {};
+const getCategoryId = (state, categoryId) => categoryId;
+export const getByCategoryId = createSelector(
+  getVideosHash,
+  getCategoryId,
+  (videosHash, categoryId) => videosHash[categoryId] || []
+);
