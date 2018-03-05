@@ -49,3 +49,5 @@ export default function videos(state = INITIAL_STATE, action = {}) {
       return state;
   }
 }
+
+export const getByCategoryId = (state, categoryId) => [];

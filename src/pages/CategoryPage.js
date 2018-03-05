@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { fetchByCategoryId, getByCategoryId } from "../actions/videos";
+import { fetchByCategoryId } from "../actions/videos";
+import { getByCategoryId } from "../reducers/videos";
 
 class CategoryPage extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class CategoryPage extends Component {
         });
       })
       .catch(err => {
-        console.error(err);
+        console.error("ERR: ", err);
         this.setState({ loading: false });
       });
   };

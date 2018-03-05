@@ -12,4 +12,4 @@ export const fetchByCategoryId = categoryId => dispatch =>
     dispatch(videosByCategoryFetched(data, categoryId));
   });
 
-export const getByCategoryId = (state, categoryId) => [];
+export default fetchByCategoryId;
