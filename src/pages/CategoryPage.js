@@ -1,9 +1,55 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { fetchByCategoryId, getByCategoryId } from "../actions/videos";
 
 class CategoryPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      videos: props.videos
+    };
+  }
+
+  componentDidMount() {
+    if (this.state.videos.length === 0) this.loadData(this.props);
+  }
+
+  componentWillReceiveProps = nextProps => {
+    const { categoryId } = this.props.match.params;
+    const { categoryId: nextCategoryId } = nextProps.match.params;
+
+    if (categoryId !== nextCategoryId && nextProps.videos.length === 0) {
+      this.loadData(nextProps);
+    } else if (this.props.videos !== nextProps.videos) {
+      this.setState({
+        videos: nextProps.videos
+      });
+    }
+  };
+
+  loadData = props => {
+    const { categoryId } = props.match.params;
+    this.setState({ loading: true });
+    this.props
+      .fetchByCategoryId(categoryId)
+      .then(() => {
+        this.setState({
+          loading: false
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({ loading: false });
+      });
+  };
+
   render() {
     const { categoryId } = this.props.match.params;
+    if (this.state.loading) return <div>Loading...</div>;
     return <div>CategoryId: {categoryId}</div>;
   }
 }
@@ -14,7 +60,22 @@ CategoryPage.propTypes = {
     params: PropTypes.shape({
       categoryId: PropTypes.string
     }).isRequired
-  }).isRequired
+  }).isRequired,
+  // mapStateToProps
+  videos: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.shape({
+        id: PropTypes.string
+      })
+    )
+  ).isRequired,
+  // mapDispatchToProps
+  fetchByCategoryId: PropTypes.func.isRequired
 };
 
-export default CategoryPage;
+const mapStateToProps = (state, ownProps) => ({
+  videos: getByCategoryId(state, ownProps.match.params.categoryId)
+});
+
+export const UnconnectedCategoryPage = CategoryPage;
+export default connect(mapStateToProps, { fetchByCategoryId })(CategoryPage);
