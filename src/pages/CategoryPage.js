@@ -64,11 +64,15 @@ CategoryPage.propTypes = {
   }).isRequired,
   // mapStateToProps
   videos: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.shape({
-        id: PropTypes.string
+    PropTypes.shape({
+      id: PropTypes.string,
+      url: PropTypes.string,
+      title: PropTypes.string,
+      short_description: PropTypes.string,
+      thumbnails: PropTypes.shape({
+        medium: PropTypes.string
       })
-    )
+    })
   ).isRequired,
   // mapDispatchToProps
   fetchByCategoryId: PropTypes.func.isRequired
