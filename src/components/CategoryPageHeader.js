@@ -6,40 +6,48 @@ const CategoryPageHeader = ({
   filterValue,
   onFilterChange,
   numResultsValue,
-  onShowChange
+  onShowChange,
+  videosLength
 }) => (
-  <FormGroup row>
-    <Label for="filter-input" sm={2} md={2}>
-      Filtro:
-    </Label>
-    <Col sm={10} md={6}>
-      <Input
-        type="text"
-        name="filter"
-        id="filter-input"
-        value={filterValue}
-        onChange={onFilterChange}
-      />
-    </Col>
-    <Label for="show-input" sm={2} md={2} className="mt-sm-2 mt-md-0">
-      Mostrar:
-    </Label>
-    <Col sm={10} md={2} className="mt-sm-2 mt-md-0">
-      <Input
-        type="select"
-        name="num_results"
-        id="show-input"
-        value={numResultsValue}
-        onChange={onShowChange}
-      >
-        <option>10</option>
-        <option>20</option>
-        <option>30</option>
-        <option>40</option>
-        <option>50</option>
-      </Input>
-    </Col>
-  </FormGroup>
+  <React.Fragment>
+    <FormGroup row>
+      <Label for="filter-input" sm={2}>
+        Filtro:
+      </Label>
+      <Col sm={10}>
+        <Input
+          type="text"
+          name="filter"
+          id="filter-input"
+          value={filterValue}
+          onChange={onFilterChange}
+        />
+      </Col>
+    </FormGroup>
+    <FormGroup
+      row
+      className="d-flex justify-content-center align-items-center"
+      style={{ fontWeight: 500 }}
+    >
+      <Col xs="auto">Encontrados {videosLength} resultados. Com</Col>
+      <Col xs="auto">
+        <Input
+          type="select"
+          name="num_results"
+          id="show-input"
+          value={numResultsValue}
+          onChange={onShowChange}
+        >
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+        </Input>
+      </Col>
+      <Col xs="auto">resultados por página.</Col>
+    </FormGroup>
+  </React.Fragment>
 );
 
 CategoryPageHeader.propTypes = {
@@ -47,7 +55,8 @@ CategoryPageHeader.propTypes = {
   filterValue: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   numResultsValue: PropTypes.number.isRequired,
-  onShowChange: PropTypes.func.isRequired
+  onShowChange: PropTypes.func.isRequired,
+  videosLength: PropTypes.number.isRequired
 };
 
 export default CategoryPageHeader;

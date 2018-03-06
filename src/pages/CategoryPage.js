@@ -85,6 +85,7 @@ class CategoryPage extends Component {
           onFilterChange={this.onFilterChange}
           numResultsValue={numResults}
           onShowChange={this.onShowChange}
+          videosLength={videos.length}
         />
         <Row>
           <CategoryPageList videos={videos} numResults={numResults} />
