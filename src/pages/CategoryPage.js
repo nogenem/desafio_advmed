@@ -29,8 +29,9 @@ class CategoryPage extends Component {
     const { categoryId } = this.props.match.params;
     const { categoryId: nextCategoryId } = nextProps.match.params;
 
-    if (categoryId !== nextCategoryId && nextProps.videos.length === 0) {
-      this.loadData(nextProps);
+    if (categoryId !== nextCategoryId) {
+      if (nextProps.videos.length === 0) this.loadData(nextProps);
+      this.setState({ filter: "", videos: nextProps.videos, numResults: 10 });
     } else if (this.props.videos !== nextProps.videos) {
       this.setState({
         videos: nextProps.videos
