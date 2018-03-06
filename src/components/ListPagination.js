@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Col, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import queryString from "query-string";
 
 class ListPagination extends Component {
@@ -31,7 +31,11 @@ class ListPagination extends Component {
   };
 
   render() {
-    return <Pagination>{this.generateButtons()}</Pagination>;
+    return (
+      <Col xs={12} className="d-flex justify-content-center">
+        <Pagination>{this.generateButtons()}</Pagination>
+      </Col>
+    );
   }
 }
 
