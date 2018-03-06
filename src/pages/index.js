@@ -1,4 +1,5 @@
 import HomePage from "./HomePage";
 import CategoryPage from "./CategoryPage";
+import VideoDetailsPage from "./VideoDetailsPage";
 
-export { HomePage, CategoryPage };
+export { HomePage, CategoryPage, VideoDetailsPage };

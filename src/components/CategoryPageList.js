@@ -51,9 +51,16 @@ class CategoryPageList extends Component {
   getPaginatedVideos = () => {
     const { videos, numResults } = this.props;
     const begin = (this.state.index - 1) * numResults;
+    const { categoryId } = this.props.match.params;
     return videos
       .slice(begin, begin + numResults)
-      .map(video => <VideoListItem key={video.id} video={video} />);
+      .map(video => (
+        <VideoListItem
+          key={video.id}
+          video={video}
+          url={`/categories/${categoryId}/videos/${video.id}`}
+        />
+      ));
   };
 
   getCurrentIndexFromLocation = (props, size = this.state.size) => {
@@ -97,6 +104,11 @@ CategoryPageList.propTypes = {
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      categoryId: PropTypes.string
+    }).isRequired
   }).isRequired
 };
 

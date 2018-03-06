@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Media } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 import LazyLoadedImg from "./LazyLoadedImg";
 
-const VideoListItem = ({ video }) => (
+const VideoListItem = ({ video, url }) => (
   <Media tag="li" className="mb-3">
-    <Media left href="#">
+    <Media left tag={NavLink} to={url}>
       <LazyLoadedImg
         src={video.thumbnails.medium}
         alt="Thumbnail do video."
@@ -32,7 +33,8 @@ VideoListItem.propTypes = {
     thumbnails: PropTypes.shape({
       medium: PropTypes.string
     })
-  }).isRequired
+  }).isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default VideoListItem;

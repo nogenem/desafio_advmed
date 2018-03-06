@@ -1,6 +1,9 @@
 import { createSelector } from "reselect";
 
-import { VIDEOS_BY_CATEGORY_FETCHED } from "../constants/action_types";
+import {
+  VIDEOS_BY_CATEGORY_FETCHED,
+  VIDEO_BY_ID_FETCHED
+} from "../constants/action_types";
 
 /*
 state = {
@@ -14,7 +17,7 @@ state = {
       thumbnails: {
         "medium": ""
       }, (maybe?)
-      views_num: XXX,
+      views: XXX,
       likes: XXX,
       dislikes: XXX (maybe?)
     },
@@ -48,6 +51,16 @@ const reshapeByCategoryData = (data, categoryId) => {
   };
 };
 
+const reshapeByIdData = ({ items }) => ({
+  full_description: items[0].snippet.description,
+  thumbnails: {
+    high: items[0].snippet.thumbnails.high.url
+  },
+  views: items[0].statistics.viewCount,
+  likes: items[0].statistics.likeCount,
+  dislikes: items[0].statistics.dislikeCount
+});
+
 export default function videos(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
     case VIDEOS_BY_CATEGORY_FETCHED:
@@ -55,6 +68,16 @@ export default function videos(state = INITIAL_STATE, action = {}) {
         ...state,
         ...reshapeByCategoryData(action.data, action.categoryId)
       };
+    case VIDEO_BY_ID_FETCHED: {
+      const video = state[action.categoryId][action.videoId];
+      const thumbnailMedium = video.thumbnails.medium;
+      Object.assign(video, reshapeByIdData(action.data));
+      video.thumbnails.medium = thumbnailMedium;
+
+      const newState = { ...state };
+      newState[action.categoryId][action.videoId] = { ...video };
+      return newState;
+    }
     default:
       return state;
   }
@@ -64,10 +87,27 @@ export default function videos(state = INITIAL_STATE, action = {}) {
 
 // Só tem um reducer, logo a store inteira possui os dados
 // do reducer 'videos'
-export const getVideosHash = state => state || {};
 const getCategoryId = (state, categoryId) => categoryId;
+const getVideoId = (state, categoryId, videoId) => videoId;
+
+export const getVideosHash = state => state || {};
 export const getVideosByCategoryId = createSelector(
   getVideosHash,
   getCategoryId,
   (videosHash, categoryId) => Object.values(videosHash[categoryId] || [])
+);
+export const isCategoryLoaded = createSelector(
+  getVideosHash,
+  getCategoryId,
+  (videosHash, categoryId) => !!videosHash[categoryId]
+);
+export const getVideoById = createSelector(
+  getVideosHash,
+  getCategoryId,
+  getVideoId,
+  (videosHash, categoryId, videoId) => {
+    const tmp = videosHash[categoryId];
+    if (!tmp) return {};
+    return tmp[videoId] || {};
+  }
 );
