@@ -20,11 +20,13 @@ class LazyLoadedImg extends Component {
   componentDidMount = () => {
     getImage(this.props.src)
       .then(url => {
-        this.imgRef.src = url;
+        if (this.imgRef) this.imgRef.src = url;
       })
       .catch(url => {
-        console.log(`LazyLoadedImg:> Imagem falhou ao carregar: ${url}`);
-        this.imgRef.src = "";
+        if (this.imgRef) {
+          console.log(`LazyLoadedImg:> Imagem falhou ao carregar: ${url}`);
+          this.imgRef.src = "";
+        }
       });
   };
 
