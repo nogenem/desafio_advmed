@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Media } from "reactstrap";
 
+import LazyLoadedImg from "./LazyLoadedImg";
+
 const VideoListItem = ({ video }) => (
   <Media tag="li" className="mb-3">
     <Media left href="#">
-      <Media object src={video.thumbnails.medium} alt="Thumbnail do video." />
+      <LazyLoadedImg
+        src={video.thumbnails.medium}
+        alt="Thumbnail do video."
+        className="media-object"
+      />
     </Media>
     <Media body>
       <Media heading tag="h5">
