@@ -7,14 +7,8 @@ import categories from "../constants/categories";
 class HomePage extends Component {
   render() {
     return (
-      <Container
-        style={{ height: "calc(100% - 56px)" }}
-        className="text-center"
-      >
-        <Row
-          className="justify-content-center align-items-center"
-          style={{ height: "calc(100% - 56px)" }}
-        >
+      <Container className="text-center mt-5">
+        <Row>
           <Col xs="12" sm="8" md="6" className="mx-auto">
             <ListGroup>
               <ListGroupItem active>Escolha uma categoria</ListGroupItem>
