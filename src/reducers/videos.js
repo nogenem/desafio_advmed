@@ -66,7 +66,7 @@ export default function videos(state = INITIAL_STATE, action = {}) {
 // do reducer 'videos'
 export const getVideosHash = state => state || {};
 const getCategoryId = (state, categoryId) => categoryId;
-export const getByCategoryId = createSelector(
+export const getVideosByCategoryId = createSelector(
   getVideosHash,
   getCategoryId,
   (videosHash, categoryId) => Object.values(videosHash[categoryId] || [])

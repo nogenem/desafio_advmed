@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Container, Row } from "reactstrap";
 
 import "./CategoryPage.css";
-import { fetchByCategoryId } from "../actions/videos";
-import { getByCategoryId } from "../reducers/videos";
+import { fetchVideosByCategoryId } from "../actions/videos";
+import { getVideosByCategoryId } from "../reducers/videos";
 import CategoryPageHeader from "../components/CategoryPageHeader";
 import CategoryPageList from "../components/CategoryPageList";
 
@@ -63,7 +63,7 @@ class CategoryPage extends Component {
     const { categoryId } = props.match.params;
     this.setState({ loading: true });
     this.props
-      .fetchByCategoryId(categoryId)
+      .fetchVideosByCategoryId(categoryId)
       .then(() => {
         this.setState({
           loading: false
@@ -115,12 +115,14 @@ CategoryPage.propTypes = {
     })
   ).isRequired,
   // mapDispatchToProps
-  fetchByCategoryId: PropTypes.func.isRequired
+  fetchVideosByCategoryId: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  videos: getByCategoryId(state, ownProps.match.params.categoryId)
+  videos: getVideosByCategoryId(state, ownProps.match.params.categoryId)
 });
 
 export const UnconnectedCategoryPage = CategoryPage;
-export default connect(mapStateToProps, { fetchByCategoryId })(CategoryPage);
+export default connect(mapStateToProps, { fetchVideosByCategoryId })(
+  CategoryPage
+);

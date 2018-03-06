@@ -7,9 +7,9 @@ const videosByCategoryFetched = (data, categoryId) => ({
   data
 });
 
-export const fetchByCategoryId = categoryId => dispatch =>
+export const fetchVideosByCategoryId = categoryId => dispatch =>
   api.videos.fetchByCategory(categoryId).then(data => {
     dispatch(videosByCategoryFetched(data, categoryId));
   });
 
-export default fetchByCategoryId;
+export default fetchVideosByCategoryId;
