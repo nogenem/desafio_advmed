@@ -51,15 +51,18 @@ const reshapeByCategoryData = (data, categoryId) => {
   };
 };
 
-const reshapeByIdData = ({ items }) => ({
-  full_description: items[0].snippet.description,
-  thumbnails: {
-    high: items[0].snippet.thumbnails.high.url
-  },
-  views: items[0].statistics.viewCount,
-  likes: items[0].statistics.likeCount,
-  dislikes: items[0].statistics.dislikeCount
-});
+const reshapeByIdData = ({ items }) => {
+  if (!items || items.length === 0) return {};
+  return {
+    full_description: items[0].snippet.description,
+    thumbnails: {
+      high: items[0].snippet.thumbnails.high.url
+    },
+    views: items[0].statistics.viewCount,
+    likes: items[0].statistics.likeCount,
+    dislikes: items[0].statistics.dislikeCount
+  };
+};
 
 export default function videos(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
