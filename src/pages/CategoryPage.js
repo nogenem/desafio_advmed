@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row } from "reactstrap";
+import { Container, Row, Alert } from "reactstrap";
 
 import "./CategoryPage.css";
 import { fetchVideosByCategoryId } from "../actions/videos";
 import { getVideosByCategoryId } from "../reducers/videos";
 import CategoryPageHeader from "../components/CategoryPageHeader";
 import CategoryPageList from "../components/CategoryPageList";
+import handleErrors from "../utils/handleErrors";
+import LoadingAlert from "../components/LoadingAlert";
 
 class CategoryPage extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class CategoryPage extends Component {
 
     this.state = {
       loading: false,
+      error: "",
       videos: props.videos,
       filter: "",
       numResults: 10
@@ -66,18 +69,26 @@ class CategoryPage extends Component {
       .fetchVideosByCategoryId(categoryId)
       .then(() => {
         this.setState({
-          loading: false
+          loading: false,
+          error: ""
         });
       })
       .catch(err => {
-        console.error("ERR: ", err);
-        this.setState({ loading: false });
+        this.setState({ loading: false, error: handleErrors(err) });
       });
   };
 
   render() {
-    const { loading, videos, filter, numResults } = this.state;
-    if (loading) return <div>Loading...</div>;
+    const { loading, error, videos, filter, numResults } = this.state;
+
+    if (loading) return <LoadingAlert className="mt-3" />;
+    if (error)
+      return (
+        <Alert color="danger" className="mt-3 text-center">
+          {error}
+        </Alert>
+      );
+
     return (
       <Container className="mt-3">
         <CategoryPageHeader
