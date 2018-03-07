@@ -45,6 +45,7 @@ class VideoDetailsPage extends Component {
   };
 
   loadData = (categoryId, videoId) => {
+    this.setState({ loading: true });
     this.props
       .fetchVideoById(categoryId, videoId)
       .then(() => {
