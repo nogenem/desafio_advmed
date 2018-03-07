@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import categories from "./constants/categories";
 
 const getSearchUrl = categoryId =>
@@ -13,7 +15,7 @@ const getVideoUrl = videoId =>
 export default {
   videos: {
     fetchByCategory: categoryId =>
-      fetch(getSearchUrl(categoryId)).then(data => data.json()),
-    fetchById: videoId => fetch(getVideoUrl(videoId)).then(data => data.json())
+      axios.get(getSearchUrl(categoryId)).then(res => res.data),
+    fetchById: videoId => axios.get(getVideoUrl(videoId)).then(res => res.data)
   }
 };

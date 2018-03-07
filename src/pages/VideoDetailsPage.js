@@ -8,19 +8,27 @@ import {
   Card,
   CardImg,
   CardBody,
-  CardTitle
+  CardTitle,
+  Alert
 } from "reactstrap";
 
 import { getVideoById, isCategoryLoaded } from "../reducers/videos";
 import { fetchVideoById } from "../actions/videos";
 import VideoDescription from "../components/VideoDescription";
 import VideoStatistics from "../components/VideoStatistics";
+import handleErrors from "../utils/handleErrors";
+import LoadingAlert from "../components/LoadingAlert";
 
 class VideoDetailsPage extends Component {
+  state = {
+    loading: false,
+    error: ""
+  };
+
   componentDidMount = () => {
     const { categoryId, videoId } = this.props.match.params;
     if (this.props.isCategoryLoaded && !this.props.video.full_description) {
-      this.props.fetchVideoById(categoryId, videoId);
+      this.loadData(categoryId, videoId);
     }
   };
 
@@ -32,20 +40,45 @@ class VideoDetailsPage extends Component {
     } = nextProps.match.params;
 
     if (categoryId !== nextCategoryId || videoId !== nextVideoId) {
-      this.props.fetchVideoById(nextCategoryId, nextVideoId);
+      this.loadData(nextCategoryId, nextVideoId);
     }
+  };
+
+  loadData = (categoryId, videoId) => {
+    this.props
+      .fetchVideoById(categoryId, videoId)
+      .then(() => {
+        this.setState({ loading: false, error: "" });
+      })
+      .catch(err => {
+        this.setState({ loading: false, error: handleErrors(err) });
+      });
   };
 
   render() {
     const { video } = this.props;
+    const { loading, error } = this.state;
+
+    if (loading) return <LoadingAlert className="mt-3" />;
+    if (error)
+      return (
+        <Alert color="danger" className="mt-3 text-center">
+          {error}
+        </Alert>
+      );
     if (!video.full_description)
-      return <div>Não foi possivel encontrar o video solicitado!</div>;
+      return (
+        <Alert color="danger" className="mt-3 text-center">
+          Não foi possível encontrar o video solicitado!
+        </Alert>
+      );
+
     const thumbnail = video.thumbnails.high
       ? video.thumbnails.high
       : video.thumbnails.medium;
     return (
       <Container className="mt-2">
-        <Row>
+        <Row className="mb-lg-2">
           <Col xs="12" sm="10" md="8" className="offset-sm-1 offset-md-2">
             <Card>
               <a href={video.url} target="_blank">
