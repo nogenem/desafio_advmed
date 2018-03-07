@@ -124,9 +124,9 @@ VideoDetailsPage.propTypes = {
     thumbnails: PropTypes.shape({
       medium: PropTypes.string
     }),
-    views_num: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    likes: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    dislikes: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    views: PropTypes.number,
+    likes: PropTypes.number,
+    dislikes: PropTypes.number
   }).isRequired,
   isCategoryLoaded: PropTypes.bool.isRequired,
   // mapDispatchToProps

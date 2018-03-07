@@ -58,9 +58,9 @@ const reshapeByIdData = ({ items }) => {
     thumbnails: {
       high: items[0].snippet.thumbnails.high.url
     },
-    views: items[0].statistics.viewCount,
-    likes: items[0].statistics.likeCount,
-    dislikes: items[0].statistics.dislikeCount
+    views: +items[0].statistics.viewCount,
+    likes: +items[0].statistics.likeCount,
+    dislikes: +items[0].statistics.dislikeCount
   };
 };
 
