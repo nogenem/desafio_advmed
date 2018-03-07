@@ -9,7 +9,7 @@
   border-radius: 0.25rem;
 }
 
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .media {
     flex-direction: column;
     align-items: center;

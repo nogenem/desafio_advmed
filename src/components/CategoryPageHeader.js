@@ -10,7 +10,7 @@ const CategoryPageHeader = ({
   videosLength
 }) => (
   <React.Fragment>
-    <FormGroup row>
+    <FormGroup row id="filter-row">
       <Label for="filter-input" sm={2}>
         Filtro:
       </Label>
@@ -19,6 +19,7 @@ const CategoryPageHeader = ({
           type="text"
           name="filter"
           id="filter-input"
+          placeholder="Filtre a lista de resultados..."
           value={filterValue}
           onChange={onFilterChange}
         />
@@ -26,6 +27,7 @@ const CategoryPageHeader = ({
     </FormGroup>
     <FormGroup
       row
+      id="num-results-row"
       className="d-flex justify-content-center align-items-center"
       style={{ fontWeight: 500 }}
     >

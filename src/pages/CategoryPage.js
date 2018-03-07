@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Container, Row, Alert } from "reactstrap";
 
 import "./CategoryPage.css";
+import "./CategoryPagePrint.css";
 import { fetchVideosByCategoryId } from "../actions/videos";
 import { getVideosByCategoryId } from "../reducers/videos";
 import CategoryPageHeader from "../components/CategoryPageHeader";
@@ -26,6 +27,8 @@ class CategoryPage extends Component {
 
   componentDidMount() {
     if (this.state.videos.length === 0) this.loadData(this.props);
+    window.addEventListener("beforeprint", this.handleBeforePrint);
+    window.addEventListener("afterprint", this.handleAfterPrint);
   }
 
   componentWillReceiveProps = nextProps => {
@@ -40,6 +43,11 @@ class CategoryPage extends Component {
         videos: nextProps.videos
       });
     }
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener("beforeprint", this.handleBeforePrint);
+    window.removeEventListener("afterprint", this.handleAfterPrint);
   };
 
   onFilterChange = e => {
@@ -60,6 +68,36 @@ class CategoryPage extends Component {
 
   onShowChange = e => {
     this.setState({ numResults: +e.target.value });
+  };
+
+  handleAfterPrint = () => {
+    document
+      .getElementById("filter-row")
+      .setAttribute("style", "display: flex;");
+
+    const filterInput = document.getElementById("filter-input");
+    filterInput.classList.remove("form-control-plaintext");
+    filterInput.removeAttribute("readonly");
+
+    document
+      .getElementById("num-results-row")
+      .setAttribute("style", "display: flex !important;");
+  };
+
+  handleBeforePrint = () => {
+    if (this.state.filter === "")
+      document
+        .getElementById("filter-row")
+        .setAttribute("style", "display: none;");
+    else {
+      const filterInput = document.getElementById("filter-input");
+      filterInput.classList.add("form-control-plaintext");
+      filterInput.setAttribute("readonly", true);
+    }
+
+    document
+      .getElementById("num-results-row")
+      .setAttribute("style", "display: none !important;");
   };
 
   loadData = props => {
