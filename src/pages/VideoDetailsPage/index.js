@@ -12,11 +12,13 @@ import {
   Alert
 } from "reactstrap";
 
-import { getVideoById, isCategoryLoaded } from "../reducers/videos";
-import { fetchVideoById } from "../actions/videos";
-import { Description, Statistics } from "../components/video";
-import handleErrors from "../utils/handleErrors";
-import LoadingAlert from "../components/LoadingAlert";
+import "./mediaPrint.css";
+
+import { getVideoById, isCategoryLoaded } from "../../reducers/videos";
+import { fetchVideoById } from "../../actions/videos";
+import { Description, Statistics } from "../../components/video";
+import handleErrors from "../../utils/handleErrors";
+import LoadingAlert from "../../components/LoadingAlert";
 
 class VideoDetailsPage extends Component {
   state = {

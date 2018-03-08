@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 
-import categories from "../constants/categories";
+import "./mediaPrint.css";
+
+import categories from "../../constants/categories";
 
 class HomePage extends Component {
   render() {

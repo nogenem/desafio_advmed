@@ -3,9 +3,10 @@ import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "bootstrap/dist/css/bootstrap.css";
+import "./mediaPrint.css";
 
-import { HomePage, CategoryPage, VideoDetailsPage } from "./pages";
-import TopNavigation from "./components/navigation/TopNavigation";
+import { HomePage, CategoryPage, VideoDetailsPage } from "../pages";
+import TopNavigation from "../components/navigation/TopNavigation";
 
 class App extends Component {
   render() {

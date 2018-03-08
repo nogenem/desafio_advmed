@@ -1,0 +1,16 @@
+@media print {
+  .card {
+    width: 60% !important;
+    margin: 0 auto;
+    border-color: black !important;
+  }
+
+  .card .collapse {
+    display: block;
+  }
+
+  .card-body button {
+    color: black !important;
+    border-color: black !important;
+  }
+}

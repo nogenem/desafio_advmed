@@ -1,0 +1,20 @@
+@media print {
+  .list-group {
+    width: 60% !important;
+    margin: 0 auto;
+  }
+
+  .list-group > .list-group-item {
+    border-color: black !important;
+  }
+  
+  .list-group > .list-group-item > a {
+    color: black !important;
+    text-decoration: none;
+  }
+  
+  .list-group > .list-group-item.active {
+    -webkit-print-color-adjust: exact !important;
+    color: #000;
+  }
+}
