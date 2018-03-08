@@ -19,7 +19,7 @@ class HomePage extends Component {
                 <ListGroupItem key={category.id} action>
                   <Link
                     to={`/categories/${category.id}`}
-                    style={{ "font-weight": "500" }}
+                    style={{ fontWeight: "500" }}
                   >
                     {category.title}
                   </Link>
