@@ -33,8 +33,13 @@ class TopNavigation extends Component {
         <NavbarBrand tag={Link} to="/" onClick={this.hideMenu}>
           Youtube API
         </NavbarBrand>
-        <NavbarToggler onClick={this.toggleNavbar} />
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <NavbarToggler
+          onClick={this.toggleNavbar}
+          aria-label="alternador do menu"
+          aria-expanded={this.state.isOpen}
+          aria-controls="collapseMenu"
+        />
+        <Collapse isOpen={this.state.isOpen} navbar id="collapseMenu">
           <Nav navbar>
             {Object.values(categories).map(category => (
               <NavItem key={category.id}>

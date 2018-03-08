@@ -80,7 +80,13 @@ class VideoDetailsPage extends Component {
     return (
       <Container className="mt-2">
         <Row className="mb-lg-2">
-          <Col xs="12" sm="10" md="8" className="offset-sm-1 offset-md-2">
+          <Col
+            xs="12"
+            sm="10"
+            md="8"
+            lg="6"
+            className="offset-sm-1 offset-md-2 offset-lg-3"
+          >
             <Card>
               <a href={video.url} target="_blank">
                 <CardImg

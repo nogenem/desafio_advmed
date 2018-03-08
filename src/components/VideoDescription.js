@@ -16,10 +16,16 @@ class VideoDescription extends Component {
   render() {
     return (
       <React.Fragment>
-        <Button onClick={this.toggleCollapse} className="dropdown-toggle">
+        <Button
+          onClick={this.toggleCollapse}
+          className="dropdown-toggle"
+          aria-label="alternador da descrição do video"
+          aria-expanded={this.state.isOpen}
+          aria-controls="collapseDescription"
+        >
           Descrição
         </Button>
-        <Collapse isOpen={this.state.isOpen}>
+        <Collapse isOpen={this.state.isOpen} id="collapseDescription">
           <CardText style={{ whiteSpace: "pre-line" }}>
             {this.props.description}
           </CardText>

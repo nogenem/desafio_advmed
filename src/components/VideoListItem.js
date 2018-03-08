@@ -1,13 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import PropTypes from "prop-types";
 import { Media } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import LazyLoadedImg from "./LazyLoadedImg";
 
 const VideoListItem = ({ video, url }) => (
   <Media tag="li" className="mb-3">
-    <Media left tag={NavLink} to={url}>
+    <Media left tag="div">
       <LazyLoadedImg
         src={video.thumbnails.medium}
         alt="Thumbnail do video."
@@ -16,7 +17,7 @@ const VideoListItem = ({ video, url }) => (
     </Media>
     <Media body>
       <Media heading tag="h5">
-        {video.title}
+        <Link to={url}>{video.title}</Link>
       </Media>
       <p className="text-muted">{video.short_description}</p>
     </Media>

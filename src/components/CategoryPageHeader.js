@@ -17,7 +17,6 @@ const CategoryPageHeader = ({
       <Col sm={10}>
         <Input
           type="text"
-          name="filter"
           id="filter-input"
           placeholder="Filtre a lista de resultados..."
           value={filterValue}
@@ -37,6 +36,7 @@ const CategoryPageHeader = ({
           type="select"
           name="num_results"
           id="show-input"
+          aria-label="quantidade de resultados"
           value={numResultsValue}
           onChange={onShowChange}
         >
