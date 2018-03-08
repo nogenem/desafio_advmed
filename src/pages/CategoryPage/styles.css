@@ -1,0 +1,15 @@
+.media-left {
+  margin-right: 1rem;
+}
+
+.media-left img {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.media-heading > a {
+  color: black;
+  text-decoration: none;
+}

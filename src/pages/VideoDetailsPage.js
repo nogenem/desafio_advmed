@@ -14,8 +14,7 @@ import {
 
 import { getVideoById, isCategoryLoaded } from "../reducers/videos";
 import { fetchVideoById } from "../actions/videos";
-import VideoDescription from "../components/VideoDescription";
-import VideoStatistics from "../components/VideoStatistics";
+import { Description, Statistics } from "../components/video";
 import handleErrors from "../utils/handleErrors";
 import LoadingAlert from "../components/LoadingAlert";
 
@@ -98,8 +97,8 @@ class VideoDetailsPage extends Component {
               </a>
               <CardBody>
                 <CardTitle>{video.title}</CardTitle>
-                <VideoDescription description={video.full_description} />
-                <VideoStatistics
+                <Description description={video.full_description} />
+                <Statistics
                   views={video.views}
                   likes={video.likes}
                   dislikes={video.dislikes}

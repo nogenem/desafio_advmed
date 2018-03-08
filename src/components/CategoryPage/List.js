@@ -4,8 +4,8 @@ import { Media } from "reactstrap";
 import queryString from "query-string";
 import { withRouter } from "react-router";
 
-import VideoListItem from "./VideoListItem";
-import ListPagination from "./ListPagination";
+import { ListItem } from "../video";
+import ListPagination from "../ListPagination";
 
 const smoothScroll = () => {
   const currentScroll =
@@ -55,7 +55,7 @@ class CategoryPageList extends Component {
     return videos
       .slice(begin, begin + numResults)
       .map(video => (
-        <VideoListItem
+        <ListItem
           key={video.id}
           video={video}
           url={`/categories/${categoryId}/videos/${video.id}`}

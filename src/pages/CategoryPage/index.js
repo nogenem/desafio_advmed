@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Row, Alert } from "reactstrap";
 
-import "./CategoryPage.css";
-import "./CategoryPagePrint.css";
-import { fetchVideosByCategoryId } from "../actions/videos";
-import { getVideosByCategoryId } from "../reducers/videos";
-import CategoryPageHeader from "../components/CategoryPageHeader";
-import CategoryPageList from "../components/CategoryPageList";
-import handleErrors from "../utils/handleErrors";
-import LoadingAlert from "../components/LoadingAlert";
+import "./styles.css";
+import "./mediaScreen.css";
+import "./mediaPrint.css";
+
+import { fetchVideosByCategoryId } from "../../actions/videos";
+import { getVideosByCategoryId } from "../../reducers/videos";
+import { Header, List } from "../../components/CategoryPage";
+import handleErrors from "../../utils/handleErrors";
+import LoadingAlert from "../../components/LoadingAlert";
 
 class CategoryPage extends Component {
   constructor(props) {
@@ -129,7 +130,7 @@ class CategoryPage extends Component {
 
     return (
       <Container className="mt-3">
-        <CategoryPageHeader
+        <Header
           filterValue={filter}
           onFilterChange={this.onFilterChange}
           numResultsValue={numResults}
@@ -137,7 +138,7 @@ class CategoryPage extends Component {
           videosLength={videos.length}
         />
         <Row>
-          <CategoryPageList videos={videos} numResults={numResults} />
+          <List videos={videos} numResults={numResults} />
         </Row>
       </Container>
     );

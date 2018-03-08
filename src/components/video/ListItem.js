@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Media } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import LazyLoadedImg from "./LazyLoadedImg";
+import LazyLoadedImg from "../LazyLoadedImg";
 
 const VideoListItem = ({ video, url }) => (
   <Media tag="li" className="mb-3">
