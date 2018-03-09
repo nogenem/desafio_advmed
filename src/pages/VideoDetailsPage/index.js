@@ -71,7 +71,8 @@ class VideoDetailsPage extends Component {
     if (!video.full_description)
       return (
         <Alert color="danger" className="mt-3 text-center">
-          Não foi possível encontrar o video solicitado!
+          Não foi possível encontrar o video solicitado. <br />
+          Por favor, tente acessa-lo via a lista de videos por categoria.
         </Alert>
       );
 
