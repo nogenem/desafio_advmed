@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from "reactstrap";
 
-const VideoStatistics = ({ views, likes, dislikes }) => (
+const Statistics = ({ views, likes, dislikes }) => (
   <Row className="text-center mt-1">
     <Col xs="6" sm="4">
       <h5 className="mb-0">{views.toLocaleString()}</h5>
@@ -19,11 +19,11 @@ const VideoStatistics = ({ views, likes, dislikes }) => (
   </Row>
 );
 
-VideoStatistics.propTypes = {
+Statistics.propTypes = {
   // ownProps
   views: PropTypes.number.isRequired,
   likes: PropTypes.number.isRequired,
   dislikes: PropTypes.number.isRequired
 };
 
-export default VideoStatistics;
+export default Statistics;

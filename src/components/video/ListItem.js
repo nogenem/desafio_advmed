@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import LazyLoadedImg from "../LazyLoadedImg";
 
-const VideoListItem = ({ video, url }) => (
+const ListItem = ({ video, url }) => (
   <Media tag="li" className="mb-3">
     <Media left tag="div">
       <LazyLoadedImg
@@ -24,7 +24,7 @@ const VideoListItem = ({ video, url }) => (
   </Media>
 );
 
-VideoListItem.propTypes = {
+ListItem.propTypes = {
   // ownProps
   video: PropTypes.shape({
     id: PropTypes.string,
@@ -38,4 +38,4 @@ VideoListItem.propTypes = {
   url: PropTypes.string.isRequired
 };
 
-export default VideoListItem;
+export default ListItem;

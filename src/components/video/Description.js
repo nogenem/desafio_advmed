@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { CardText, Collapse, Button } from "reactstrap";
 
-class VideoDescription extends Component {
+class Description extends Component {
   state = {
     isOpen: false
   };
@@ -35,9 +35,9 @@ class VideoDescription extends Component {
   }
 }
 
-VideoDescription.propTypes = {
+Description.propTypes = {
   // ownProps
   description: PropTypes.string.isRequired
 };
 
-export default VideoDescription;
+export default Description;

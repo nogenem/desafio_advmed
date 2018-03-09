@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
-const CategoryPageHeader = ({
+const Header = ({
   filterValue,
   onFilterChange,
   numResultsOptions,
@@ -53,7 +53,7 @@ const CategoryPageHeader = ({
   </React.Fragment>
 );
 
-CategoryPageHeader.propTypes = {
+Header.propTypes = {
   // ownProps
   filterValue: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
@@ -63,4 +63,4 @@ CategoryPageHeader.propTypes = {
   videosLength: PropTypes.number.isRequired
 };
 
-export default CategoryPageHeader;
+export default Header;

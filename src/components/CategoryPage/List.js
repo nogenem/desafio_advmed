@@ -16,7 +16,7 @@ const smoothScroll = () => {
   }
 };
 
-class CategoryPageList extends Component {
+class List extends Component {
   constructor(props) {
     super(props);
 
@@ -85,7 +85,7 @@ class CategoryPageList extends Component {
   }
 }
 
-CategoryPageList.propTypes = {
+List.propTypes = {
   // ownProps
   videos: PropTypes.arrayOf(
     PropTypes.shape({
@@ -112,4 +112,4 @@ CategoryPageList.propTypes = {
   }).isRequired
 };
 
-export default withRouter(CategoryPageList);
+export default withRouter(List);
