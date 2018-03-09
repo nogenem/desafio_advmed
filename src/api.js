@@ -2,6 +2,14 @@ import axios from "axios";
 
 import categories from "./constants/categories";
 
+/*
+  Vale ressaltar que fazer as chamadas para a API do google diretamente do front-end
+  não é uma boa opção já que a API_KEY fica visível para todos tanto no código como 
+  na requisição para a API em si. 
+
+  A melhor forma de tratar isso seria fazendo as requisições via um servidor próprio
+  ou colocando o domínio do site na whitelist da API do google.
+*/
 const getSearchUrl = categoryId =>
   `https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=${
     categories[categoryId].title
