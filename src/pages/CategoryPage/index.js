@@ -13,6 +13,14 @@ import { Header, List } from "../../components/CategoryPage";
 import handleErrors from "../../utils/handleErrors";
 import LoadingAlert from "../../components/LoadingAlert";
 
+const numResultsOptions = [10, 20, 30, 40, 50];
+const getNumResults = () => {
+  const numResults = +localStorage.numResults;
+  return numResultsOptions.includes(numResults)
+    ? numResults
+    : numResultsOptions[0];
+};
+
 class CategoryPage extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +30,7 @@ class CategoryPage extends Component {
       error: "",
       videos: props.videos,
       filter: "",
-      numResults: 10
+      numResults: getNumResults()
     };
   }
 
@@ -38,7 +46,8 @@ class CategoryPage extends Component {
 
     if (categoryId !== nextCategoryId) {
       if (nextProps.videos.length === 0) this.loadData(nextProps);
-      this.setState({ filter: "", videos: nextProps.videos, numResults: 10 });
+      const numResults = getNumResults();
+      this.setState({ filter: "", videos: nextProps.videos, numResults });
     } else if (this.props.videos !== nextProps.videos) {
       this.setState({
         videos: nextProps.videos
@@ -68,7 +77,11 @@ class CategoryPage extends Component {
   };
 
   onShowChange = e => {
-    this.setState({ numResults: +e.target.value });
+    const value = +e.target.value;
+    if (!numResultsOptions.includes(value) || value === this.state.numResults)
+      return;
+    localStorage.numResults = value;
+    this.setState({ numResults: value });
   };
 
   handleAfterPrint = () => {
@@ -133,6 +146,7 @@ class CategoryPage extends Component {
         <Header
           filterValue={filter}
           onFilterChange={this.onFilterChange}
+          numResultsOptions={numResultsOptions}
           numResultsValue={numResults}
           onShowChange={this.onShowChange}
           videosLength={videos.length}

@@ -5,6 +5,7 @@ import { Col, FormGroup, Label, Input } from "reactstrap";
 const CategoryPageHeader = ({
   filterValue,
   onFilterChange,
+  numResultsOptions,
   numResultsValue,
   onShowChange,
   videosLength
@@ -40,11 +41,11 @@ const CategoryPageHeader = ({
           value={numResultsValue}
           onChange={onShowChange}
         >
-          <option>10</option>
-          <option>20</option>
-          <option>30</option>
-          <option>40</option>
-          <option>50</option>
+          {numResultsOptions.map(n => (
+            <option key={n} value={n}>
+              {n}
+            </option>
+          ))}
         </Input>
       </Col>
       <Col xs="auto">resultados por página.</Col>
@@ -56,6 +57,7 @@ CategoryPageHeader.propTypes = {
   // ownProps
   filterValue: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
+  numResultsOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
   numResultsValue: PropTypes.number.isRequired,
   onShowChange: PropTypes.func.isRequired,
   videosLength: PropTypes.number.isRequired
